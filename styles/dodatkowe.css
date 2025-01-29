@@ -1,0 +1,45 @@
+
+/* klub  */
+
+#klub{
+
+}
+.klub_main{
+
+    display: flex;
+    align-items: center;
+    padding: 60px;
+
+}
+.klub_main h2{
+    font-size: 40px;
+}
+.klub_main p{
+    font-size: 20px;
+}
+.klub_main img{
+    width: 100px;
+}
+
+.klub_desc{
+    background-color: black;
+    display: flex;
+    width: 100%;
+    font-size: 100%;
+    padding: 40px 0px;
+}
+
+.klub_desc_f ,.klub_desc_s{
+    padding: 0px 30px;
+    
+}
+.klub_desc_f {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.klub_desc *{
+    padding-bottom: 20px;
+}
+.klub_desc_text{
+    max-width: 50%;
+}

@@ -1,0 +1,201 @@
+#tabela{
+    margin-bottom: 100px;
+
+}
+
+.tabela_main{
+    gap:10px;
+    padding:60px 70px;
+}
+.tabela_main h2{
+    font-size: 200%;
+    margin-bottom: 5px;
+}
+.tabela_lista{
+    
+    background-color: rgb(0, 0, 0,0.5);
+    display: flex;
+    padding: 20px 40px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 140%;
+
+}
+.tabela_lista ul{
+    display: flex;
+    list-style: none;
+    gap: 50px;
+}
+
+@media screen and (max-width: 1000px) {
+    
+    .tabela_main{
+        gap:10px;
+        padding:20px;
+    }
+    .tabela_lista{  
+        background-color: rgb(0, 0, 0,0.5);
+        display: flex;
+        padding: 20px 5%;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 100%;
+    
+    }
+    .tabela_lista ul{
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
+.tabela_card{
+    background-color: black;
+    padding: 20px 40px;
+}
+.tabela_card_title{
+    font-weight: 600;
+    font-size: 150%;
+    padding: 20px 0px;
+}
+.tabela_card table{
+    width: 100%;
+    text-align: center;
+    /* padding: 0px 20px; */
+    
+}
+.tabela_card table thead{
+    font-weight: 600;
+    font-size: 120%;
+}
+.tabela_card table thead td{
+    padding: 10px 0px;
+
+}
+.statistic{
+    text-align: start;
+}
+.tabela_card table tbody {
+    /* gap: 10px; */
+}
+.tabela_card table tbody tr{
+    border-collapse: collapse;
+}
+.tabela_card table tbody td{
+    border-top: 2px solid white;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* padding: 5px; */
+    
+}
+.tabela_card table tbody tr:last-child td{
+    border-bottom: 2px solid white;
+    
+}
+.tabela_card table tbody tr:hover{
+   background-color: rgb(3, 0, 255,0.2);
+}
+.tabela_card table tbody img{
+    width: 50px;
+}
+.table_club_logo{
+    display: flex;
+    align-items: center;
+    justify-content: start ;
+    /* background-color: red; */
+    font-size: 110%;
+    /* width: 10%; */
+    padding: 10px;
+}
+.table_club_score{
+    font-weight: 700;
+    font-size: 110%;
+}
+
+.terminal_table{
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+}
+
+.terminal_card{
+    background-color:rgb(50, 48, 202,0.5);
+    width: 350px;
+    border: 1px solid #666666;
+}
+.terminal_up{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px 0px 0px;
+    align-items: center;
+
+}
+.terminal_club{
+    justify-content: center;
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+    text-align: center;
+}
+.terminal_club img{
+    margin: auto;
+    width: 80px;
+}
+.terminal_score{
+background-color: black;  
+display: flex;
+border-radius: 20px;
+    padding: 10px 20px;
+    border: 2px solid black;
+    gap: 5px;
+    font-size: 160%;
+}
+.terminal_walkower{
+    border: 2px solid red;
+}
+.terminal_between p{
+    text-align: center;
+    color: red;
+    height: 30px;
+    
+    
+}
+.terminal_down{
+
+    
+}
+.terminal_down_box{
+    background-color: black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 50%;
+    display: flex;
+    margin: auto;
+    padding: 10px;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+}
+.terminal_title{
+    font-size: 150%;
+  padding: 40px 0px;
+}
+
+@media screen and (max-width: 1000px) {
+    .terminal_title{
+        
+        text-align: center;
+    }
+    .table_club_logo img{
+        
+    }
+
+.tabela_card{
+    background-color: black;
+    padding: 20px 20px;
+}
+.tabela_card table tbody td{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+}

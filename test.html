@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <title>Document</title>
+  <!-- Flickity CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.min.css">
+
+  <!-- Flickity JavaScript -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      color: white;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #0300FF;
+    }
+
+    #backgroundscreen {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 1) 28%, rgba(50, 48, 202, 1) 100%);
+      font-family: "Inter", serif;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+    }
+
+    .desktop_res {
+      display: flex;
+      justify-content: space-between;
+    }
+
+
+
+    header #logo {
+      padding: 10px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    header #logo img {
+      width: 200px;
+    }
+
+    header #logo h1 {
+      font-weight: 400;
+      font-size: 250%;
+    }
+
+    header #headerlinks {
+      margin: 50px;
+    }
+
+    header #headerlinks a {
+      padding: 15px;
+      margin: 10px;
+    }
+
+    header #headerlinks img {
+      width: 40px;
+    }
+
+    header #menu_div,
+    header #menu_div img {
+      visibility: hidden;
+      position: absolute;
+    }
+
+    header .navbar {
+      background-color: rgb(50, 48, 202, 0.5);
+    }
+
+    header .navbar ul {
+      display: flex;
+      list-style: none;
+      justify-content: center;
+    }
+
+    header .navbar ul a {
+      color: white;
+      text-decoration: none;
+      padding: 20px 40px;
+      font-size: 120%;
+      border: 1px solid transparent;
+    }
+
+    header .navbar ul a:hover {
+      border: 1px solid #0300FF;
+    }
+
+    .mobile_res {
+      visibility: hidden;
+      position: absolute;
+    }
+
+    @media screen and (max-width: 479px) {
+      header {
+        width: 100%;
+      }
+
+      .desktop_res {
+        justify-content: space-around
+      }
+
+      header #logo {
+        display: grid;
+        justify-content: center;
+        text-align: center;
+      }
+
+      header #logo img {
+        width: 80px;
+        margin: auto;
+      }
+
+      header #logo h1 {
+        font-size: 120%;
+      }
+
+      header #headerlinks img {
+        width: 20px;
+      }
+
+      header #menu_div,
+      header #menu_div img {
+        visibility: visible;
+        position: relative;
+      }
+
+      header #menu_div {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
+
+      header #headerlinks {
+        visibility: hidden;
+        position: absolute;
+      }
+
+      header .navbar {
+        width: 100%;
+        z-index: 100;
+        position: absolute;
+        background-color: rgb(50, 48, 202, 0.5);
+      }
+
+      header .navbar ul {
+        background-color: rgb(50, 48, 202, 0.5);
+        position: static;
+        width: 100%;
+        flex-direction: column;
+        display: flex;
+        list-style: none;
+        justify-content: center;
+      }
+
+      header .navbar ul a {
+        color: white;
+        text-decoration: none;
+        padding: 20px 40px;
+        font-size: 120%;
+        border: 1px solid transparent;
+      }
+
+      header .navbar ul a:hover {
+        border: 1px solid #0300FF;
+      }
+
+      header .navbar {
+        visibility: hidden;
+      }
+
+      header .navbar.active {
+        flex-direction: column;
+        visibility: visible;
+      }
+
+      header .mobile_res {
+        visibility: hidden;
+        position: relative;
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      header .mobile_res.active {
+        visibility: visible;
+      }
+
+      header .mobile_res a {
+        margin: 0px 10px;
+      }
+
+      header .mobile_res img {
+        width: 35px;
+        margin: 10px;
+      }
+    }
+
+    @media screen and (min-width: 480px) and (max-width: 1023px) {}
+
+
+    /* Styl dla kontenera slidera */
+    .slider {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+
+      background: #000;
+      /* Dodanie tła w przypadku załadowania treści */
+    }
+
+    /* Kontener na wszystkie slajdy */
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      /* Płynniejsza animacja */
+      width: 500%;
+      height: 100%;
+    }
+
+    /* Pojedynczy slajd */
+    .slide {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Tło gradientowe na slajdzie */
+    .slide .background_blur {
+      background: rgb(0, 0, 0);
+      background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.54) 40%);
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    /* Obraz w slajdzie */
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Obraz dostosowuje się do kontenera */
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    /* Opis na slajdzie */
+    .slide .desc {
+      position: absolute;
+      left: 5%;
+      bottom: 10%;
+      z-index: 2;
+      padding: 20px 30px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 85%;
+    }
+
+    /* Nagłówek w opisie */
+    .slide .desc h2 {
+      font-size: 400%;
+
+      margin: 0;
+    }
+
+    /* Tekst w opisie */
+    .slide .desc p {
+      font-size: 200%;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    /* Pasek informacji */
+    .slide .desc .belt {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 70%;
+
+      margin-top: 10px;
+    }
+
+    .slide .desc .belt a {
+      text-decoration: underline;
+      /* font-weight: bold; */
+      font-size: 150%;
+    }
+
+    /*
+.slide .desc .belt a:hover {
+    text-decoration: underline;
+} */
+
+    /* Różne tła dla slajdów */
+    /* .slide:nth-child(1) {
+    background-color: #ff5733;
+}
+
+.slide:nth-child(2) {
+    background-color: #33c3ff;
+}
+
+.slide:nth-child(3) {
+    background-color: #75ff33;
+} */
+
+    /* Dostosowanie responsywności */
+    @media (max-width: 768px) {
+      .slide .desc {
+        width: 80%;
+        padding: 15px 20px;
+      }
+
+      .slide .desc h2 {
+        font-size: 2rem;
+      }
+
+      .slide .desc p {
+        font-size: 0.9rem;
+      }
+    }
+
+
+    main {
+      width: 80%;
+      margin: auto;
+      /* height: 1000px; */
+    }
+
+    @media screen and (max-width: 479px) {
+      main {
+        width: 100%;
+        margin: auto;
+        /* height: 1000px; */
+      }
+    }
+
+    .matches_board {
+      padding: 10px;
+      margin-bottom: 100px;
+      margin-top: 50px;
+    }
+
+    .matches_tab {
+      /* background-color: green; */
+      display: flex;
+      margin: 20px;
+      font-size: 120%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .matches_list {
+      display: flex;
+      /* gap: 40px; */
+
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      /* background-color: gold; */
+    }
+
+    .match_card {
+      background-color: rgba(50, 48, 202, 0.5);
+      /* Poprawiony zapis z rgba */
+      display: grid;
+      min-width: 30%;
+      /* width: 600px; */
+      border-radius: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      border: none;
+      /* padding: 10px;  */
+
+      position: relative;
+      /* Ustawienie pozycji dla pseudo-elementu */
+
+    }
+
+    .match_card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(to bottom, #000000, #666666);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      z-index: -1;
+      /* Umieszczenie za obiektem */
+    }
+
+    .match_card_up {
+      /* background-color: #ff5733; */
+      display: flex;
+      padding: 50px 0px;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .match_card_club img {
+      width: 70px;
+      margin: auto;
+    }
+
+    .match_card_club {
+      gap: 5px;
+      display: grid;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .match_card_data {
+      background-color: #000;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      padding: 15px 20px;
+      width: 40%;
+      font-size: 110%;
+      text-align: center;
+    }
+
+    .match_card_down {
+      display: flex;
+      justify-content: center;
+
+    }
+
+    .match_score {
+      background-color: black;
+      font-size: 250%;
+      border: 2px solid black;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-align: center;
+
+    }
+
+    .match_score p {
+      letter-spacing: 5px;
+    }
+
+    .walkower_card {
+      font-size: 80%;
+      text-align: center;
+      color: red;
+    }
+
+    .walkower {
+      margin: auto;
+      border-color: red;
+    }
+
+    @media screen and (max-width: 479px) {
+      .matches_board {
+        margin-bottom: 50px;
+      }
+
+      .matches_list {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+
+      .match_card {
+        min-width: 95%;
+
+      }
+
+      .match_card:nth-child(1) {
+        margin-left: 0px;
+      }
+
+      .match_card_up {
+        /* flex-direction: column; */
+        padding: 20px 30px;
+        /* padding: 15px; */
+      }
+
+      .match_score {
+        font-size: 150%;
+        padding: 8px 16px;
+      }
+
+      .match_card_data {
+        width: 70%;
+        font-size: 100%;
+      }
+    }
+
+    .onas {
+      background-color: rgb(0, 0, 0, 0.5);
+      padding: 70px;
+      display: flex;
+      justify-content: space-around;
+      height: 200px;
+      margin-bottom: 60px;
+    }
+
+    .onas_desc {
+      font-size: 140%;
+      width: 50%;
+
+    }
+
+    .onas_title {
+      font-weight: 400;
+    }
+
+    .onas_subtitle {
+      font-weight: 400;
+      margin-top: 10px;
+      font-size: 110%;
+      margin-bottom: 10px;
+
+    }
+
+    .onas_text {
+      font-size: 80%;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .onas_link {
+      padding: 20px 0px;
+      font-weight: 400;
+    }
+
+    @media screen and (max-width: 479px) {
+      .onas {
+        padding: 30px;
+        display: grid;
+        height: auto;
+      }
+
+      .onas_desc {
+        font-size: 120%;
+        width: 100%;
+      }
+
+      .onas_text {
+        font-size: 70%;
+      }
+
+      .onas_img {
+        margin: 40px auto;
+      }
+    }
+
+
+    .partnerzy_title {
+      text-align: center;
+      font-size: 250%;
+      font-weight: 400;
+    }
+
+    .partnerzy_list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .partnerzy_list img {
+      width: 350px;
+      padding: 40px;
+    }
+
+
+
+    footer {
+      background-color: #000;
+      display: grid;
+    }
+
+    .footer_up {
+
+      display: flex;
+      justify-content: space-evenly;
+      align-items: flex-start;
+      padding: 50px;
+      gap: 100px;
+    }
+
+    .f_media {
+      /* background-color: red; */
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+    }
+
+    .f_media p {
+      font-weight: 400;
+      font-size: 110%;
+
+    }
+
+    .f_media img {
+      margin: auto;
+      width: 140px;
+    }
+
+    .f_media_links img {
+      width: 40px;
+      margin: 5px 10px;
+    }
+
+    .f_links {
+
+      display: flex;
+      gap: 50px;
+    }
+
+    .f_links p {
+      font-size: 140%;
+    }
+
+    .f_links_l {
+      list-style: none;
+
+    }
+
+    .f_links_l li {
+      margin: 10px 0px;
+    }
+
+    .f_links_l a {
+      font-size: 100%;
+
+    }
+
+    .footer_down {
+      display: flex;
+      padding: 20px 30px;
+      justify-content: space-between;
+    }
+
+    .f_d_links {
+      gap: 20px;
+      display: flex;
+    }
+
+    @media screen and (max-width: 479px) {
+      .footer_up {
+        display: grid;
+
+        padding: 30px;
+
+      }
+
+      .f_media_links img {
+        width: 35px;
+        margin: 3px 5px;
+      }
+
+    }
+  </style>
+</head>
+
+<body id="backgroundscreen">
+
+  <!-- header -->
+  <header>
+    <div class="desktop_res">
+      <div id="logo">
+        <img src="./assets/logo_ligi_osiedlowej.png" />
+        <h1>Liga Osiedlowa Kielce</h1>
+      </div>
+      <div id="headerlinks">
+        <a href="#">
+          <img src="./assets/facebook.png" />
+        </a>
+        <a href="#">
+          <img src="./assets/instagram.png" />
+        </a>
+        <a href="#">
+          <img src="./assets/email.png" />
+        </a>
+        <a href="#">
+          <img src="./assets/x.png" />
+        </a>
+      </div>
+      <div id="menu_div">
+        <a href="#" id="menu-toggle">
+          <img src="./assets/bars.png" />
+        </a>
+      </div>
+    </div>
+    <div class="navbar">
+      <ul>
+        <a href="">
+          <li>Głowna</li>
+        </a>
+        <a href="">
+          <li>Statystyki</li>
+        </a>
+        <a href="">
+          <li>Archiwa</li>
+        </a>
+        <a href="">
+          <li>Aktualności</li>
+        </a>
+        <a href="">
+          <li>Kontakt</li>
+        </a>
+      </ul>
+      <div class="mobile_res">
+        <a href="#">
+          <img src="./assets/facebook.png" />
+        </a>
+        <a href="#">
+          <img src="./assets/instagram.png" />
+        </a>
+        <a href="#">
+          <img src="./assets/email.png" />
+        </a>
+        <a href="#">
+          <img src="./assets/x.png" />
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- slider -->
+  <!-- <div class="slider">
+    <div class="slides">
+
+      <div class="slide">
+        <div class="background_blur"></div>
+        <img src="./assets/news/20241108_195138.jpg" />
+        <div class="desc">
+          <h2>Zwycięzcy II ligi osiedlowej </h2>
+          <p>FC Bukówka - było ciężko ale ...</p>
+          <div class="belt">
+            <p>23.03.2024</p>
+            <a href="#">Czytaj więcej </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="background_blur"></div>
+        <img src="./assets/news/IMG_20241103_144002_984.webp" />
+        <div class="desc">
+          <h2>Zwycięzcy II ligi osiedlowej </h2>
+          <p>FC Bukówka - było ciężko ale ...</p>
+          <div class="belt">
+            <p>23.03.2024</p>
+            <a href="#">Czytaj więcej </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="background_blur"></div>
+        <img src="./assets/news/IMG_20241104_221959_184.jpg" />
+        <div class="desc">
+          <h2>Zwycięzcy II ligi osiedlowej </h2>
+          <p>FC Bukówka - było ciężko ale ...</p>
+          <div class="belt">
+            <p>23.03.2024</p>
+            <a href="#">Czytaj więcej </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="background_blur"></div>
+        <img src="./assets/news/Messenger_creation_8443264695800329.jpeg" />
+        <div class="desc">
+          <h2>Zwycięzcy II ligi osiedlowej </h2>
+          <p>FC Bukówka - było ciężko ale ...</p>
+          <div class="belt">
+            <p>23.03.2024</p>
+            <a href="#">Czytaj więcej </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="background_blur"></div>
+        <img src="./assets/news/IMG_20241106_081120_774.webp" />
+        <div class="desc">
+          <h2>Zwycięzcy II ligi osiedlowej </h2>
+          <p>FC Bukówka - było ciężko ale ...</p>
+          <div class="belt">
+            <p>23.03.2024</p>
+            <a href="#">Czytaj więcej </a>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div> -->
+
+
+
+  <main>
+    <!-- liga 1 -->
+    <div class="matches_board">
+      <div class="matches_tab">
+        <h2>Liga I</h2>
+        <a href="#">Terminarz -></a>
+      </div>
+      <div class="matches_list">
+
+        <div class="match_card">
+          <div class="match_card_up">
+            <div class="match_card_club">
+              <img src="./assets/clubs/jaga.png" />
+              <p>Lech Poznań</p>
+            </div>
+            <div class="match_score">
+              <p>3:2</p>
+            </div>
+            <div class="match_card_club">
+              <img src="./assets/clubs/lech.png" />
+              <p>Lech Poznań</p>
+            </div>
+          </div>
+          <div class="match_card_down">
+            <p class="match_card_data">27.08.2024 16:30</p>
+          </div>
+        </div>
+
+        <div class="match_card">
+          <div class="match_card_up">
+            <div class="match_card_club">
+              <img src="./assets/clubs/jaga.png" />
+              <p>Lech Poznań</p>
+            </div>
+            <div class="match_score">
+              <p>3:2</p>
+            </div>
+            <div class="match_card_club">
+              <img src="./assets/clubs/lech.png" />
+              <p>Lech Poznań</p>
+            </div>
+          </div>
+          <div class="match_card_down">
+            <p class="match_card_data">27.08.2024 16:30</p>
+          </div>
+        </div>
+
+        <div class="match_card">
+          <div class="match_card_up">
+            <div class="match_card_club">
+              <img src="./assets/clubs/jaga.png" />
+              <p>Lech Poznań</p>
+            </div>
+            <div class="match_score">
+              <p>3:2</p>
+            </div>
+            <div class="match_card_club">
+              <img src="./assets/clubs/lech.png" />
+              <p>Lech Poznań</p>
+            </div>
+          </div>
+          <div class="match_card_down">
+            <p class="match_card_data">27.08.2024 16:30</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- liga 2 -->
+    <div class="matches_board">
+      <div class="matches_tab">
+        <h2>Liga II</h2>
+        <a href="#">Terminarz -></a>
+      </div>
+      <div class="matches_list">
+
+        <div class="match_card">
+          <div class="match_card_up">
+            <div class="match_card_club">
+              <img src="./assets/clubs/jaga.png" />
+              <p>Lech Poznań</p>
+            </div>
+            <div class="match_score">
+              <p>3:2</p>
+            </div>
+            <div class="match_card_club">
+              <img src="./assets/clubs/lech.png" />
+              <p>Lech Poznań</p>
+            </div>
+          </div>
+          <div class="match_card_down">
+            <p class="match_card_data">27.08.2024 16:30</p>
+          </div>
+        </div>
+
+        <div class="match_card">
+          <div class="match_card_up">
+            <div class="match_card_club">
+              <img src="./assets/clubs/jaga.png" />
+              <p>Lech Poznań</p>
+            </div>
+            <div>
+              <div class="match_score walkower">
+                <p>3:3</p>
+              </div>
+              <p class="walkower_card">*walkower</p>
+            </div>
+            <div class="match_card_club">
+              <img src="./assets/clubs/lech.png" />
+              <p>Lech Poznań</p>
+            </div>
+          </div>
+          <div class="match_card_down">
+            <p class="match_card_data">27.08.2024 16:30</p>
+          </div>
+        </div>
+
+        <div class="match_card">
+          <div class="match_card_up">
+            <div class="match_card_club">
+              <img src="./assets/clubs/jaga.png" />
+              <p>Lech Poznań</p>
+            </div>
+            <div>
+              <div class="match_score walkower">
+                <p>3:3</p>
+              </div>
+              <p class="walkower_card">*walkower</p>
+            </div>
+            <div class="match_card_club">
+              <img src="./assets/clubs/lech.png" />
+              <p>Lech Poznań</p>
+            </div>
+          </div>
+          <div class="match_card_down">
+            <p class="match_card_data">27.08.2024 16:30</p>
+          </div>
+        </div>
+
+        <div class="match_card">
+          <div class="match_card_up">
+            <div class="match_card_club">
+              <img src="./assets/clubs/jaga.png" />
+              <p>Lech Poznań</p>
+            </div>
+            <div class="match_score">
+              <p>3:2</p>
+            </div>
+            <div class="match_card_club">
+              <img src="./assets/clubs/lech.png" />
+              <p>Lech Poznań</p>
+            </div>
+          </div>
+          <div class="match_card_down">
+            <p class="match_card_data">27.08.2024 16:30</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="onas">
+      <div class="onas_desc">
+        <h1 class="onas_title">O nas</h1>
+        <h3 class="onas_subtitle">Czym jest Liga Osiedlowa?</h3>
+        <p class="onas_text">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam culpa provident et doloremque tenetur sunt aut
+          fugiat odio molestias atque nam voluptatem optio voluptates modi fuga, itaque quas ab. Praesentium.
+        </p>
+        <a href="#" class="onas_link">Masz Pytania?</a>
+
+      </div>
+
+      <div class="onas_img">
+        <img src="./assets/logo_ligi_osiedlowej.png" />
+      </div>
+    </div>
+
+    <div class="partnerzy">
+      <h1 class="partnerzy_title">Nasi Patrnerzy</h1>
+      <div class="partnerzy_list">
+        <img src="./assets/icons/TVP3-Kielce.svg.png" />
+        <img src="./assets/icons/Logo_Radio_Kielce.jpg" />
+        <img src="./assets/icons/szpn-z-napisem-175823-300x297.png" />
+
+        <img src="./assets/icons/Decathlon_Logo24.svg.png" />
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer_up">
+      <div class="f_media">
+        <img src="./assets/logo_ligi_osiedlowej.png" />
+        <p>Liga Osiedlowa Kielce</p>
+        <div class="f_media_links">
+          <img src="./assets/facebook.png" />
+          <img src="./assets/instagram.png" />
+          <img src="./assets/email.png" />
+          <img src="./assets/x.png" />
+        </div>
+      </div>
+
+      <div class="f_links">
+        <div>
+          <p>Mapa strony</p>
+          <ul class="f_links_l">
+            <li><a href="#">Strona Głowna</a></li>
+            <li><a href="#">Statystyki</a></li>
+            <li><a href="#">Archiwa</a></li>
+            <li><a href="#">Ogłoszenia</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+
+        </div>
+        <div>
+          <p>Archiwa</p>
+          <ul class="f_links_l">
+            <li><a href="#">Strona Głowna</a></li>
+            <li><a href="#">Statystyki</a></li>
+            <li><a href="#">Archiwa</a></li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="footer_down">
+      <p>LIGA OSIEDLOWA 2025 © WSZELKIE PRAWA ZASTRZEŻONE</p>
+      <div class="f_d_links">
+        <a href="#">RODO</a>
+        <a href="#">Polityka Prywatności</a>
+      </div>
+    </div>
+
+  </footer>
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuToggle = document.getElementById("menu-toggle");
+      const navbar = document.querySelector(".navbar");
+      const m = document.querySelector(".mobile_res");
+
+      menuToggle.addEventListener("click", (e) => {
+        e.preventDefault(); // Zapobiega domyślnemu zachowaniu linku
+        navbar.classList.toggle("active"); // Przełączanie klasy
+        m.classList.toggle("active")
+      });
+
+
+    });
+
+    const slides = document.querySelector('.slides');
+    const slideCount = document.querySelectorAll('.slide').length;
+    let currentIndex = 0;
+    let startX = 0;
+    let isDragging = false;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+
+    const setPositionByIndex = () => {
+      currentTranslate = -currentIndex * window.innerWidth;
+      slides.style.transform = `translateX(${currentTranslate}px)`;
+    };
+
+    const touchStart = (event) => {
+      startX = getPositionX(event);
+      isDragging = true;
+      slides.style.transition = 'none';
+      prevTranslate = currentTranslate; // Ustaw poprzedni stan na bieżący
+    };
+
+    const touchMove = (event) => {
+      if (!isDragging) return;
+      const currentPosition = getPositionX(event);
+      const movement = currentPosition - startX;
+      currentTranslate = prevTranslate + movement;
+      slides.style.transform = `translateX(${currentTranslate}px)`;
+    };
+
+    const touchEnd = () => {
+      isDragging = false;
+      const movedBy = currentTranslate - prevTranslate;
+
+      if (movedBy < -50 && currentIndex < slideCount - 1) {
+        currentIndex++;
+      } else if (movedBy > 100 && currentIndex > 0) {
+        currentIndex--;
+      }
+
+      slides.style.transition = 'transform 0.3s ease-in-out';
+      setPositionByIndex();
+    };
+
+    const getPositionX = (event) => {
+      return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    };
+
+    slides.addEventListener('mousedown', touchStart);
+    slides.addEventListener('mousemove', touchMove);
+    slides.addEventListener('mouseup', touchEnd);
+    slides.addEventListener('mouseleave', () => {
+      if (isDragging) touchEnd();
+    });
+    slides.addEventListener('touchstart', touchStart);
+    slides.addEventListener('touchmove', touchMove);
+    slides.addEventListener('touchend', touchEnd);
+
+    window.addEventListener('resize', setPositionByIndex);
+
+
+
+
+  </script>
+
+
+
+</body>
+
+</html>
