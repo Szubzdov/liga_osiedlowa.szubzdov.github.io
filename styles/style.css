@@ -56,6 +56,7 @@ header .navbar{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+
 }
 header .navbar ul{
     display: flex;
@@ -68,14 +69,61 @@ header .navbar ul a {
     padding: 20px 40px;
     font-size: 120%;
     border:1px solid transparent;
+    display: block;
 }
 header .navbar ul a:hover{
     border:1px solid #0300FF;
+}
+header .navbar ul li{
+    position: relative;
 }
 .mobile_res{
     visibility: hidden;
     position: absolute;
 }
+.navbar ul li:hover > a {
+    
+}
+.dropdown {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    background-color: #3230CA;
+    z-index: 1000;
+    min-width: 150px;
+    top: 100%;
+    left: 0;
+}
+.dropdown li {
+    display: block;
+    border-top: 1px solid white;
+}
+.dropdown li:last-child{
+    border-bottom: 1px solid white;
+}
+.dropdown li a {
+    padding: 10px;
+    display: block;
+    color: white;
+}
+.dropdown li a:hover {
+    
+}
+.navbar ul li:hover .dropdown {
+    visibility: visible;
+    display: block;
+}
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+
+
 @media screen and (max-width: 1000px){
     header{   
         width: 100%;
@@ -113,7 +161,7 @@ header .navbar ul a:hover{
     }
     header .navbar{
         width: 100%;
-        z-index: 100;
+      
         position: absolute;
         background-color: rgb(50, 48, 202,0.5);
     }
@@ -140,6 +188,7 @@ header .navbar ul a:hover{
         visibility: hidden;
     }
     header .navbar.active{
+       
         flex-direction: column; 
         visibility: visible;
     }
@@ -159,31 +208,62 @@ header .navbar ul a:hover{
         width: 35px;
         margin: 10px;  
     }
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 50px;
+        left: 0;
+    }
+    .navbar ul.active {
+        display: flex;
+    }
+    .navbar ul li {
+        width: 100%;
+        text-align: center;
+        position: relative;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    .dropdown {
+        display: none;
+        z-index: 100;
+        position: relative;
+        background-color: #444;
+        width: 100%;
+        position: relative;
+        visibility:hidden;
+    }
+    .navbar ul li.active .dropdown {
+        display: block;
+        position: absolute;
+        visibility: visible;
+        
+    }
 }
 @media screen and (min-width: 480px) and (max-width: 1023px){
 
 }
 
 
-/* Styl dla kontenera slidera */
 .slider {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100vh; /* Full height of the viewport */
     overflow: hidden;
-    
-    background: #000; /* Dodanie tła w przypadku załadowania treści */
+    background: #000;
 }
 
-/* Kontener na wszystkie slajdy */
 .slides {
     display: flex;
     transition: transform 0.5s ease-in-out; /* Płynniejsza animacja */
-    width: 500%;
+    width: 500%; /* Umożliwia przesuwanie slajdów */
     height: 100%;
 }
 
-/* Pojedynczy slajd */
 .slide {
     flex: 1;
     width: 100%;
@@ -192,76 +272,68 @@ header .navbar ul a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Zapewnia, że zawartość poza slajdem będzie ukryta */
 }
 
-/* Tło gradientowe na slajdzie */
+/* Background gradient overlay */
 .slide .background_blur {
-    background: rgb(0,0,0);
-    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.54) 40%);
-    z-index: 1;
-    width: 100%;
-    height: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.54) 40%);
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
-/* Obraz w slajdzie */
+/* Image styling for full-width and height */
 .slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Obraz dostosowuje się do kontenera */
+    object-fit: cover; 
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 0;
 }
 
-/* Opis na slajdzie */
+/* Description styling */
 .slide .desc {
     position: absolute;
     left: 5%;
     bottom: 10%;
     z-index: 2;
     padding: 20px 30px;
-  
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 85%;
 }
 
-/* Nagłówek w opisie */
 .slide .desc h2 {
     font-size: 400%;
-
     margin: 0;
 }
 
-/* Tekst w opisie */
 .slide .desc p {
     font-size: 200%;
     font-weight: 400;
     margin: 0;
 }
 
-/* Pasek informacji */
 .slide .desc .belt {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 70%;
-
     margin-top: 10px;
 }
 
- .slide .desc .belt a {
+.slide .desc .belt a {
     text-decoration: underline;
-    /* font-weight: bold; */
     font-size: 150%;
 }
 
-/* Dostosowanie responsywności */
+
 @media (max-width: 768px) {
     .slide .desc {
         width: 80%;

@@ -49,21 +49,29 @@
     </div>
     <div class="navbar">
       <ul>
-        <a href="index.html">
-          <li>Głowna</li>
-        </a>
-        <a href="tabele.html">
-          <li>Statystyki</li>
-        </a>
-        <a href="archiwa-tabele.html">
-          <li>Archiwa</li>
-        </a>
-        <a href="klub.html">
-          <li>Aktualności</li>
-        </a>
-        <a href="statystyki.html">
-          <li>Kontakt</li>
-        </a>
+        <li>
+          <a href="index.html">Główna</a>
+        </li>
+        <li class="has-dropdown">
+          <a href="#">Statystyki</a>
+          <ul class="dropdown">
+            <li><a href="./tabele.html">Tabele</a></li>
+            <li><a href="./statystyki.html">Strzelcy</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <a href="#">Archiwa</a>
+          <ul class="dropdown">
+            <li><a href="./archiwa-tabele.html">2023</a></li>
+            <li><a href="./archiwa-tabele.html">2024</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="./aktualnosci.html">Aktualności</a>
+        </li>
+        <li>
+          <a href="index.html#onas">Kontakt</a>
+        </li>
       </ul>
       <div class="mobile_res">
         <a href="#">
@@ -83,7 +91,7 @@
   </header>
 
 
-  <!-- slider -->
+
   <div class="slider">
     <div class="slides">
 
@@ -159,7 +167,7 @@
 
 
   <main>
-    <!-- liga 1 -->
+
     <div class="matches_board">
       <div class="matches_tab">
         <h2>Liga I</h2>
@@ -226,7 +234,7 @@
 
       </div>
     </div>
-    <!-- liga 2 -->
+
     <div class="matches_board">
       <div class="matches_tab">
         <h2>Liga II</h2>
@@ -320,7 +328,7 @@
     </div>
 
 
-    <div class="onas">
+    <div class="onas" id="onas">
       <div class="onas_desc">
         <h1 class="onas_title">O nas</h1>
         <h3 class="onas_subtitle">Czym jest Liga Osiedlowa?</h3>
