@@ -9,18 +9,16 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
-  <title>Document</title>
+  <title>Strona Głowna</title>
   <link rel="stylesheet" href="./styles/style.css">
-  <!-- Flickity CSS -->
+  <link rel="icon" type="image/x-icon" href="./assets/logo_ligi_osiedlowej.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.min.css">
-
-  <!-- Flickity JavaScript -->
 
 </head>
 
 <body id="backgroundscreen">
 
-  <!-- header -->
+
   <header>
     <div class="desktop_res">
       <div id="logo">
@@ -49,29 +47,23 @@
     </div>
     <div class="navbar">
       <ul>
-        <li>
-          <a href="index.html">Główna</a>
-        </li>
-        <li class="has-dropdown">
+        <li><a href="index.html">Główna</a></li>
+        <li class="has-dropdown" onclick="toggleDropdown('stats')">
           <a href="#">Statystyki</a>
-          <ul class="dropdown">
+          <ul class="dropdown" id="stats">
             <li><a href="./tabele.html">Tabele</a></li>
             <li><a href="./statystyki.html">Strzelcy</a></li>
           </ul>
         </li>
-        <li class="has-dropdown">
+        <li class="has-dropdown" onclick="toggleDropdown('archive')">
           <a href="#">Archiwa</a>
-          <ul class="dropdown">
+          <ul class="dropdown" id="archive">
             <li><a href="./archiwa-tabele.html">2023</a></li>
             <li><a href="./archiwa-tabele.html">2024</a></li>
           </ul>
         </li>
-        <li>
-          <a href="./aktualnosci.html">Aktualności</a>
-        </li>
-        <li>
-          <a href="index.html#onas">Kontakt</a>
-        </li>
+        <li><a href="./aktualnosci.html">Aktualności</a></li>
+        <li><a href="index.html#onas">Kontakt</a></li>
       </ul>
       <div class="mobile_res">
         <a href="#">
@@ -412,16 +404,17 @@
     document.addEventListener("DOMContentLoaded", () => {
       const menuToggle = document.getElementById("menu-toggle");
       const navbar = document.querySelector(".navbar");
-      const m = document.querySelector(".mobile_res");
 
       menuToggle.addEventListener("click", (e) => {
-        e.preventDefault(); // Zapobiega domyślnemu zachowaniu linku
-        navbar.classList.toggle("active"); // Przełączanie klasy
-        m.classList.toggle("active")
+        e.preventDefault();
+        navbar.classList.toggle("active");
       });
-
-
     });
+
+    function toggleDropdown(id) {
+      var dropdown = document.getElementById(id);
+      dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+    }
 
     const slides = document.querySelector('.slides');
     const slideCount = document.querySelectorAll('.slide').length;
@@ -440,7 +433,7 @@
       startX = getPositionX(event);
       isDragging = true;
       slides.style.transition = 'none';
-      prevTranslate = currentTranslate; // Ustaw poprzedni stan na bieżący
+      prevTranslate = currentTranslate;
     };
 
     const touchMove = (event) => {

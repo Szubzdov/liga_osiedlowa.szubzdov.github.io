@@ -47,6 +47,11 @@ header #headerlinks a{
 header #headerlinks img{
     width: 40px;
 }
+header #menu_div{
+    display: flex;
+    align-self: center;
+}
+
 header #menu_div, header #menu_div img {
     visibility: hidden;
     position: absolute;
@@ -56,7 +61,7 @@ header .navbar{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
+    
 }
 header .navbar ul{
     display: flex;
@@ -89,7 +94,7 @@ header .navbar ul li{
     visibility: hidden;
     position: absolute;
     background-color: #3230CA;
-    z-index: 1000;
+    z-index: 3;
     min-width: 150px;
     top: 100%;
     left: 0;
@@ -120,6 +125,13 @@ header .navbar ul li{
     font-size: 24px;
     color: white;
     cursor: pointer;
+    
+   
+    
+
+}
+.has-dropdown:hover .dropdown {
+    display: block;
 }
 
 
@@ -153,7 +165,7 @@ header .navbar ul li{
     header #menu_div{
         justify-content: center;
         align-items: center;
-        display: flex;
+        display: block;
     }
     header #headerlinks{
         visibility: hidden;
@@ -167,9 +179,10 @@ header .navbar ul li{
     }
     header .navbar ul{
         background-color: rgb(50, 48, 202,0.5);
-        position:static;
+        /* position:static; */
         width: 100%;
         flex-direction: column;
+        text-align: center;
         display: flex;
         list-style: none;
         justify-content: center;
@@ -188,7 +201,8 @@ header .navbar ul li{
         visibility: hidden;
     }
     header .navbar.active{
-       
+        z-index: 3;
+       display: flex;
         flex-direction: column; 
         visibility: visible;
     }
@@ -203,46 +217,66 @@ header .navbar ul li{
     }
     header .mobile_res a{
         margin: 0px 10px;
+        width: 100%;
     }
     header .mobile_res img{
         width: 35px;
         margin: 10px;  
     }
     .navbar ul {
-        display: none;
         flex-direction: column;
+        /* align-items: center; */
         width: 100%;
-        background-color: #333;
-        position: absolute;
-        top: 50px;
-        left: 0;
     }
-    .navbar ul.active {
-        display: flex;
+
+    .navbar li {
+        /* margin-bottom: 10px; */
     }
-    .navbar ul li {
-        width: 100%;
-        text-align: center;
-        position: relative;
-    }
-    .menu-toggle {
-        display: block;
-    }
+
     .dropdown {
         display: none;
-        z-index: 100;
-        position: relative;
-        background-color: #444;
-        width: 100%;
-        position: relative;
-        visibility:hidden;
-    }
-    .navbar ul li.active .dropdown {
-        display: block;
-        position: absolute;
-        visibility: visible;
+        /* position: static; */
+        background-color: #007bff;
+        padding: 0;
+        /* width: 100%; */
         
     }
+
+    .dropdown a {
+        background-color: #0056b3;
+        text-align: center;
+        /* padding: 10px; */
+        display: none;
+        
+    }
+
+    /* Styl dla przycisku do otwierania menu */
+    .mobile_res {
+        display: flex;
+        /* justify-content: center; */
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .mobile_res a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .mobile_res img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .has-dropdown > a::after {
+        content: " ▼";
+        font-size: 12px;
+    }
+
+    .has-dropdown.active > .dropdown {
+        display: block;
+    }
+    
 }
 @media screen and (min-width: 480px) and (max-width: 1023px){
 
@@ -283,7 +317,7 @@ header .navbar ul li{
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 /* Image styling for full-width and height */
@@ -301,7 +335,7 @@ header .navbar ul li{
     position: absolute;
     left: 5%;
     bottom: 10%;
-    z-index: 2;
+    /* z-index: 1; */
     padding: 20px 30px;
     display: flex;
     flex-direction: column;
@@ -400,7 +434,7 @@ main{
     position: relative; /* Ustawienie pozycji dla pseudo-elementu */
 
 }
-.match_card::before {
+/* .match_card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -415,8 +449,8 @@ main{
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
-    z-index: -1; /* Umieszczenie za obiektem */
-}
+
+} */
 .match_card_up{
     /* background-color: #ff5733; */
     display: flex;
@@ -456,7 +490,7 @@ main{
     padding: 10px 20px;
     border-radius: 30px ;
     text-align: center;
-
+    
 }
 .match_score p{
     letter-spacing: 5px;
@@ -496,6 +530,7 @@ main{
     .match_score {
         font-size: 150%;
         padding: 8px 16px;
+        z-index:1;
     }
     .match_card_data {
         width: 70%;
